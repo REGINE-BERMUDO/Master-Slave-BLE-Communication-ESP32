@@ -173,8 +173,6 @@ Discovery, connections, and ON/OFF command logs displayed together.
 
 https://github.com/user-attachments/assets/093fc8ef-db45-4300-9b11-532496c234f9
 
-[Open video attachment](https://github.com/user-attachments/assets/093fc8ef-db45-4300-9b11-532496c234f9)
-
 </details>
 
 <details open>
@@ -189,8 +187,6 @@ The physical three-board setup, pushbutton, and LED outputs.
     </td>
   </tr>
 </table>
-
-[Open video attachment](https://github.com/user-attachments/assets/4b69f4b7-eee0-44a6-8354-ccc0f447b353)
 
 </details>
 
