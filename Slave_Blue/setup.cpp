@@ -18,4 +18,16 @@ void bleSetup(void) {
   // Create BLE LED Service & Led write characteristic
   BLEService *ptrService_LED = ptrServer->createService(SERVICE_LED_UUID);
   BLECharacteristic *ptrCharacteristic_ledwrite = ptrService_LED->createCharacteristic(CHARACTERISTIC_LEDWRITE_UUID, BLECharacteristic::PROPERTY_WRITE);
+
+  // Start BLE LED Service
+  ptrService_LED->start();
+
+  // Create advertising instance
+  BLEAdvertising *ptrAdvertise = BLEDevice::getAdvertising();
+
+  // Advertise LED Service
+  ptrAdvertise->addServiceUUID(SERVICE_LED_UUID);
+
+  // Start advertising
+  ptrAdvertise->start();
 }
