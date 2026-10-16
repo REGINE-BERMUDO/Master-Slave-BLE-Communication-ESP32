@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
 <title id="title">ESP32 Group Master-Slave BLE</title>
-<desc id="desc">One Master controls two peripherals over BLE. Three hardware columns describe the pushbutton input and two LED outputs. Group integration and hardware verification are pending.</desc>
+<desc id="desc">One ESP32 Master and two BLE peripherals. Source review shows that the Master's discovery names must match the names advertised by the Blue and Red Slaves.</desc>
 <rect width="1280" height="640" rx="12" fill="#101113"/>
 <path d="M30 71H1250M30 558H1250" stroke="#333236"/>
 <g font-family="Bahnschrift,Arial,sans-serif">
@@ -46,5 +46,5 @@
 <text x="628" y="442">Reconnect worker</text><text x="839" y="442">State sync on recovery</text><text x="1050" y="442">State sync on recovery</text>
 </g>
 <g fill="#736e69" font-size="12"><text x="628" y="484">FreeRTOS Master</text><text x="839" y="484">slave1.ino</text><text x="1050" y="484">slave2.ino</text></g>
-<g fill="#ada8a1" font-size="15"><text x="44" y="606"><tspan fill="#f1eee7" font-size="22" font-weight="700">3</tspan><tspan dx="8">boards</tspan></text><text x="184" y="606"><tspan fill="#f1eee7" font-size="22" font-weight="700">2</tspan><tspan dx="8">BLE links</tspan></text><text x="350" y="606"><tspan fill="#f1eee7" font-size="22" font-weight="700">3</tspan><tspan dx="8">application tasks</tspan></text><text x="1235" y="606" text-anchor="end"><tspan fill="#e6a17c">Group integration</tspan><tspan dx="10">verification pending</tspan></text></g>
+<g fill="#ada8a1" font-size="15"><text x="44" y="606"><tspan fill="#f1eee7" font-size="22" font-weight="700">3</tspan><tspan dx="8">boards</tspan></text><text x="184" y="606"><tspan fill="#f1eee7" font-size="22" font-weight="700">2</tspan><tspan dx="8">BLE links</tspan></text><text x="350" y="606"><tspan fill="#f1eee7" font-size="22" font-weight="700">3</tspan><tspan dx="8">application tasks</tspan></text><text x="1235" y="606" text-anchor="end"><tspan fill="#e6a17c">Integration next:</tspan><tspan dx="10">match BLE names</tspan></text></g>
 </g></svg>
