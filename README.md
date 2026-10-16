@@ -190,14 +190,33 @@ The original `master/master.ino` in this repository is byte-for-byte identical t
 
 | Scenario | Individual result | Evidence |
 | :--- | :--- | :--- |
-| Discover and connect to both Slaves | Passed | [Connection log](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-01-ble-discovery-connections.png) |
-| Control both LEDs with the button | Passed | [ON/OFF communication](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-02-normal-ble-communication.png) |
-| Disconnect Slave 1 while controlling Slave 2 | Passed | [Slave 1 disconnected](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-03-slave1-disconnection.png) |
-| Disconnect Slave 2 while controlling Slave 1 | Passed | [Slave 2 disconnected](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-04-slave2-disconnection.png) |
-| Restore each Slave and resume control | Passed | [Automatic recovery](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-05-automatic-reconnection.png) |
-| Reconnect while holding the button | Evidence captured; video/log confirmation pending | [State synchronization](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-07-led-state-synchronization.png) |
+| Discover and connect to both Slaves | Passed | [Connection log](evidence/evidence-01-ble-discovery-connections.png) |
+| Control both LEDs with the button | Passed | [ON/OFF communication](evidence/evidence-02-normal-ble-communication.png) |
+| Disconnect Slave 1 while controlling Slave 2 | Passed | [Slave 1 disconnected](evidence/evidence-03-slave1-disconnection.png) |
+| Disconnect Slave 2 while controlling Slave 1 | Passed | [Slave 2 disconnected](evidence/evidence-04-slave2-disconnection.png) |
+| Restore each Slave and resume control | Passed | [Automatic recovery](evidence/evidence-05-automatic-reconnection.png) |
+| Reconnect while holding the button | Evidence captured; video/log confirmation pending | [State synchronization](evidence/evidence-07-led-state-synchronization.png) |
 
 The group demonstration videos above show the three-board setup. The test table links to results from Yestin’s individually tested Master setup.
+
+<details open>
+<summary><strong>Open the test evidence gallery</strong></summary>
+
+These screenshots were captured during Yestin’s individual hardware tests. They are included here as reference evidence for the Master firmware and do not claim a separate test of Regine’s hardware.
+
+| Discovery and connections | Normal button operation |
+| :---: | :---: |
+| [<img src="evidence/evidence-01-ble-discovery-connections.png" alt="Serial Monitor showing discovery and connections to both Slaves" width="100%">](evidence/evidence-01-ble-discovery-connections.png) | [<img src="evidence/evidence-02-normal-ble-communication.png" alt="Serial Monitor showing normal ON and OFF communication" width="100%">](evidence/evidence-02-normal-ble-communication.png) |
+
+| Slave 1 disconnected | Slave 2 disconnected |
+| :---: | :---: |
+| [<img src="evidence/evidence-03-slave1-disconnection.png" alt="Serial Monitor showing Slave 1 disconnected while Slave 2 continues responding" width="100%">](evidence/evidence-03-slave1-disconnection.png) | [<img src="evidence/evidence-04-slave2-disconnection.png" alt="Serial Monitor showing Slave 2 disconnected while Slave 1 continues responding" width="100%">](evidence/evidence-04-slave2-disconnection.png) |
+
+| Automatic reconnection | Recovered LED state |
+| :---: | :---: |
+| [<img src="evidence/evidence-05-automatic-reconnection.png" alt="Serial Monitor showing automatic reconnection" width="100%">](evidence/evidence-05-automatic-reconnection.png) | [<img src="evidence/evidence-07-led-state-synchronization.png" alt="Serial Monitor showing LED state synchronization evidence" width="100%">](evidence/evidence-07-led-state-synchronization.png) |
+
+</details>
 
 <a id="branches"></a>
 
