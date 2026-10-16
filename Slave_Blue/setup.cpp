@@ -31,9 +31,9 @@ public:
   void onWrite(BLECharacteristic *pCharacteristic)
   override {
     // Gather Master LED Command
-    stding::string ledcommand = pCharacteristic->getValue();
+    String ledcommand = pCharacteristic->getValue();
 
-    Serial.println("Received LED Command:" + String(command.c_str()));
+    Serial.println("Received LED Command:" + String(ledcommand.c_str()));
 
     // Set LED Pin to HIGH if command is ON
     if(ledcommand == "ON") {
