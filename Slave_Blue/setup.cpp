@@ -34,7 +34,7 @@ public:
     // Gather Master LED Command
     String ledcommand = pCharacteristic->getValue();
 
-    Serial.println("Received LED Command:" + String(ledcommand.c_str()));
+    Serial.println("Received LED Command:" + ledcommand);
 
     // Set LED Pin to HIGH if command is ON
     if(ledcommand == "ON") {
