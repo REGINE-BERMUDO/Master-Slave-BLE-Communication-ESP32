@@ -1,60 +1,7 @@
 #include "setup.h"
 
-
-
-
-
-// Connection Handler
-class BLE_ServerConnection_Callback : public BLEServerCallbacks {
-public:
-  // Master connects
-  void onConnect(BLEServer *pServer)
-  override {
-    Serial.println("ESP32 Slave (Blue) successfully connected to ESP32 Master!");
-  }
-
-  // When Master or Slave disconnects
-  void onDisconnect(BLEServer *pServer)
-  override {
-    Serial.println("ESP32 Slave (Blue) disconnected!");
-
-    // Re-advertise after disconnection
-    BLEDevice::startAdvertising();
-
-    Serial.println("ESP32 Slave (Blue) advertising restarted!");
-  }
-};
-
-// LED Write Command Handler
-class BLE_LEDWrite_Callback : public BLECharacteristicCallbacks {
-public:
-  // When Master sends LED Command
-  void onWrite(BLECharacteristic *pCharacteristic)
-  override {
-    // Gather Master LED Command
-    String ledcommand = pCharacteristic->getValue();
-
-    Serial.println("Received LED Command:" + ledcommand);
-
-    // Set LED Pin to HIGH if command is ON
-    if(ledcommand == "ON") {
-      digitalWrite(CREDLED_PIN, LOW);
-      Serial.println("RED LED PIN ON");
-    }
-
-    // Set LED Pin to LOW if command is OFF
-    if(ledcommand == "OFF") {
-      digitalWrite(CREDLED_PIN, LOW);
-      Serial.println("RED LED PIN OFF");
-    }
-  }
-};
-
 BLE_ServerConnection_Callback ble_srvconn_cb;
 BLE_LEDWrite_Callback ble_ledwrite_cb;
-
-
-
 
 void ledpinSetup(void) {
   // Configure LED pin 20
@@ -63,10 +10,6 @@ void ledpinSetup(void) {
   // Set Initial LED pin state to low
   digitalWrite(CREDLED_PIN, LOW);
 }
-
-
-
-
 
 String bleSetup(void) {
   // Initialize BLE with advertising name
