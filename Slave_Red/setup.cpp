@@ -32,3 +32,42 @@ void ServerCallbacks::onDisconnect(BLEServer *server) {
 
   Serial.println("Slave Red advertising restarted!");
 }
+
+// ---------- Setup ----------
+void setupSlave() {
+  // Configure Red LED
+  pinMode(LED_PIN, OUTPUT);
+
+  // Keep LED OFF at startup
+  digitalWrite(LED_PIN, LOW);
+
+  // Initialize BLE Slave Red
+  BLEDevice::init("LAB7_SLAVE_1");
+
+  // Create BLE Server
+  BLEServer *server = BLEDevice::createServer();
+  server->setCallbacks(new ServerCallbacks());
+
+  // Create BLE Service
+  BLEService *service = server->createService(SERVICE_UUID);
+
+  // Create writable Characteristic
+  BLECharacteristic *characteristic =
+      service->createCharacteristic(
+          CHARACTERISTIC_UUID,
+          BLECharacteristic::PROPERTY_WRITE
+      );
+
+  // Assign command handler
+  characteristic->setCallbacks(new CommandCallbacks());
+
+  // Start BLE Service
+  service->start();
+
+  // Configure and start advertising
+  BLEAdvertising *advertising = BLEDevice::getAdvertising();
+  advertising->addServiceUUID(SERVICE_UUID);
+  advertising->start();
+
+  Serial.println("Slave Red ready; advertising BLE");
+}

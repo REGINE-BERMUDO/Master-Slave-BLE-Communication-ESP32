@@ -26,4 +26,7 @@ public:
   void onDisconnect(BLEServer *server) override;
 };
 
+// Sets up the LED and BLE
+void setupSlave();
+
 #endif
