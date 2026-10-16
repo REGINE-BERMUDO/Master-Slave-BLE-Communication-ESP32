@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <a id="top"></a>
 
 <p align="center">
@@ -193,3 +194,16 @@ Each member develops on their own hardware. The group's integrated test results 
   <a href="https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32">Group repository</a> ·
   <a href="https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm">Individual reference</a>
 </p>
+=======
+# Description
+
+# UUID & ESP32 Bluetooth MAC Addresses
+
+#### ESP32 Blue LED (Slave)
+##### Service:
+  - a
+##### Characteristics:
+  - LEDWrite UUID: "e70df770-9853-4704-bd6d-d18b3f8dfdb3"
+-
+# References
+>>>>>>> origin/main
