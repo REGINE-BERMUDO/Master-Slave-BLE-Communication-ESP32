@@ -182,6 +182,19 @@ The group setup uses one Master board, two BLE-capable ESP32 Slaves, a pushbutto
 
 The Master currently searches for `LAB7_SLAVE_1` and `LAB7_SLAVE_2`, which do not match either Slave name above. The `Restauro` branch uses a third Blue name, `ESP32 Slave (Blue)`, and the `Bermudo` branch has a typo in its Red name, `ESPS32 SLAVE Red`. Use the `main` versions as the README's source of truth, then make the Master and Slaves advertise matching names. Confirm the actual GPIO wiring before choosing pins. Disconnect power before rewiring; with `INPUT_PULLUP`, connect the button between the configured input and GND.
 
+### Circuit photo reference
+
+These photos show Yestin’s individual hardware setup. They are provided as a wiring reference and do not document Regine’s group hardware.
+
+<p align="center">
+  <a href="circuit/01-complete-hardware-setup.jpg"><img src="circuit/01-complete-hardware-setup.jpg" alt="Complete three-board ESP32 reference setup" width="720"></a><br>
+  <em>Complete reference setup</em>
+</p>
+
+| Wiring view 1 | Wiring view 2 |
+| :---: | :---: |
+| [<img src="circuit/02-wiring-view-1.jpg" alt="Close view of the ESP32 circuit wiring, view 1" width="100%">](circuit/02-wiring-view-1.jpg) | [<img src="circuit/03-wiring-view-2.jpg" alt="Close view of the ESP32 circuit wiring, view 2" width="100%">](circuit/03-wiring-view-2.jpg) |
+
 <a id="integration-and-testing"></a>
 
 ## <img src="docs/assets/icons/check.svg" width="23" height="23" alt=""> Test results and integration status
@@ -245,7 +258,7 @@ The current `main` tree already contains the Master, modular Master, both comple
 
 ## Supporting files
 
-The group technical guide is in [`docs/technical-guide.md`](docs/technical-guide.md). The remaining physical documentation to add is a wiring diagram or photos of the group's actual boards. Circuit photos and test screenshots in Yestin’s individual repository document his separate reference setup.
+The group technical guide is in [`docs/technical-guide.md`](docs/technical-guide.md). The circuit photos in [Hardware and wiring](#hardware) and the test screenshots above show Yestin’s individual reference setup. Add photos of the group’s actual boards when they are available.
 
 <a id="references"></a>
 
