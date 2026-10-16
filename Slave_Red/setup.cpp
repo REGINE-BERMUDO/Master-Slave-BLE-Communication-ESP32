@@ -10,11 +10,25 @@ void CommandCallbacks::onWrite(BLECharacteristic *characteristic) {
   // Turn LED 1 ON
   if (command == "ON") {
     digitalWrite(LED_PIN, HIGH);
-    Serial.println("LED 1 ON");
+    Serial.println("Red LED ON");
   }
   // Turn LED 1 OFF
   else if (command == "OFF") {
     digitalWrite(LED_PIN, LOW);
-    Serial.println("LED 1 OFF");
+    Serial.println("Red LED OFF");
   }
+}
+
+// ---------- Connection handler ----------
+void ServerCallbacks::onConnect(BLEServer *server) {
+  Serial.println("Slave Red connected to Master!");
+}
+
+void ServerCallbacks::onDisconnect(BLEServer *server) {
+  Serial.println("Slave Red disconnected!");
+
+  // Restart advertising so the Master can reconnect
+  BLEDevice::startAdvertising();
+
+  Serial.println("Slave Red advertising restarted!");
 }

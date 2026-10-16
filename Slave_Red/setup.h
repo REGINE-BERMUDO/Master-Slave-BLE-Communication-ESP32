@@ -19,4 +19,11 @@ public:
   void onWrite(BLECharacteristic *characteristic) override;
 };
 
+// Handle BLE connection and disconnection
+class ServerCallbacks : public BLEServerCallbacks {
+public:
+  void onConnect(BLEServer *server) override;
+  void onDisconnect(BLEServer *server) override;
+};
+
 #endif
