@@ -162,9 +162,37 @@ Record the actual firmware revision, board targets, and observed outcomes when t
 
 ## <img src="docs/assets/icons/video.svg" width="23" height="23" alt=""> Demonstrations and evidence
 
-Group-specific recordings, wiring photographs, and serial logs have not yet been supplied for this README. Add evidence from the integrated group setup alongside the corresponding test results.
+### Group project demonstrations
 
-For a working example of the intended behavior, see **[Yestin's individual demonstrations](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm#demonstrations)**. Those recordings show his separate three-board build and serve as reference material.
+The recordings show the three-board ESP32 setup, Serial Monitor activity, pushbutton input, and LED outputs. Integration testing of the group's branch firmware is tracked separately in [Integration and testing](#integration-and-testing).
+
+<details open>
+<summary><strong>01 / Serial Monitor demonstration</strong> · Master and both Slaves</summary>
+
+Discovery, connections, and ON/OFF command logs displayed together.
+
+https://github.com/user-attachments/assets/093fc8ef-db45-4300-9b11-532496c234f9
+
+[Open video attachment](https://github.com/user-attachments/assets/093fc8ef-db45-4300-9b11-532496c234f9)
+
+</details>
+
+<details open>
+<summary><strong>02 / Physical hardware demonstration</strong> · Portrait video</summary>
+
+The physical three-board setup, pushbutton, and LED outputs.
+
+<table align="center" width="320">
+  <tr>
+    <td align="center" width="300">
+      <video src="https://github.com/user-attachments/assets/4b69f4b7-eee0-44a6-8354-ccc0f447b353" width="300" controls="controls"></video>
+    </td>
+  </tr>
+</table>
+
+[Open video attachment](https://github.com/user-attachments/assets/4b69f4b7-eee0-44a6-8354-ccc0f447b353)
+
+</details>
 
 <a id="team-and-contributions"></a>
 
