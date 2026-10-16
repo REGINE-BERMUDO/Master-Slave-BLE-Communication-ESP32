@@ -42,7 +42,7 @@ void setupSlave() {
   digitalWrite(LED_PIN, LOW);
 
   // Initialize BLE Slave Red
-  BLEDevice::init("LAB7_SLAVE_1");
+  BLEDevice::init("ESPS32 SLAVE Red");
 
   // Create BLE Server
   BLEServer *server = BLEDevice::createServer();
