@@ -7,12 +7,12 @@ void CommandCallbacks::onWrite(BLECharacteristic *characteristic) {
   Serial.print("Received command: ");
   Serial.println(command.c_str());
 
-  // Turn LED 1 ON
+  // Turn Red LED ON
   if (command == "ON") {
     digitalWrite(LED_PIN, HIGH);
     Serial.println("Red LED ON");
   }
-  // Turn LED 1 OFF
+  // Turn Red LED OFF
   else if (command == "OFF") {
     digitalWrite(LED_PIN, LOW);
     Serial.println("Red LED OFF");
