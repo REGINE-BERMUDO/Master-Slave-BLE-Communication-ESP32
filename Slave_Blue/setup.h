@@ -15,6 +15,6 @@
 void ledpinSetup(void);
 
 // BLE Initialize & Start Advertise
-void bleSetup(void);
+String bleSetup(void);
 
 #endif
