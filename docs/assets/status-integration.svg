@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="70" viewBox="0 0 300 70" role="img" aria-label="GROUP INTEGRATION: Hardware validation pending">
-<defs><linearGradient id="surface" x2="0" y2="1"><stop stop-color="#303842"/><stop offset="1" stop-color="#111820"/></linearGradient></defs>
-<rect x=".5" y=".5" width="299" height="69" rx="8" fill="url(#surface)" stroke="#607080"/>
-<rect x="4" y="4" width="292" height="62" rx="5" fill="none" stroke="#ffb300" stroke-opacity=".48"/>
-<g transform="translate(16 16) scale(1.55)" fill="none" stroke="#ffb300" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/></g>
-<g font-family="Verdana,Arial,sans-serif"><text x="66" y="27" fill="#ffb300" font-size="9" letter-spacing="1.7">GROUP INTEGRATION</text><text x="66" y="48" fill="#f5f8fc" font-size="12" font-weight="600">Hardware validation pending</text></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64" role="img" aria-label="THREE-BOARD DEMO: Master and two ESP32 Slaves">
+<defs><linearGradient id="surface" x2="0" y2="1"><stop stop-color="#24343b"/><stop offset="1" stop-color="#10171d"/></linearGradient></defs>
+<rect x=".5" y=".5" width="279" height="63" rx="8" fill="url(#surface)" stroke="#21dc91" stroke-opacity=".8"/>
+<rect x="4" y="4" width="272" height="56" rx="5" fill="none" stroke="#21dc91" stroke-opacity=".48"/>
+<g transform="translate(15 14) scale(1.5)" fill="none" stroke="#00f59b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/></g>
+<g font-family="Verdana,Arial,sans-serif"><text x="60" y="25" fill="#00f59b" font-size="9" letter-spacing="1.6">THREE-BOARD DEMO</text><text x="60" y="46" fill="#f5fff9" font-size="12" font-weight="600">Master + two ESP32 Slaves</text></g></svg>

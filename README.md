@@ -3,184 +3,86 @@
 <p align="center">
   <picture>
     <source media="(max-width: 600px)" srcset="docs/assets/ble-cover-mobile.svg">
-    <img src="docs/assets/ble-cover.svg" alt="Group ESP32 BLE project: one Master, two peripherals, and FreeRTOS command workers; group hardware verification pending" width="100%">
+    <img src="docs/assets/ble-cover.svg" alt="Group ESP32 BLE project: one Master, two Slaves, and FreeRTOS command workers" width="100%">
   </picture>
 </p>
 
 <p align="center">
-  <a href="#integration-and-testing"><img src="docs/assets/status-integration.svg" alt="Group integration: hardware validation pending" width="280"></a>
-  <a href="#architecture"><img src="docs/assets/status-topology.svg" alt="Multi-device BLE: 1 Master + 2 Slaves" width="280"></a>
+  <a href="#demonstrations"><img src="docs/assets/status-integration.svg" alt="Three-board demo: Master and two ESP32 Slaves" width="280"></a>
+  <a href="#architecture"><img src="docs/assets/status-topology.svg" alt="Multi-device BLE: one Master and two Slaves" width="280"></a>
 </p>
 
 <p align="center">
   <strong>Explore:</strong>
-  <a href="#getting-started">Getting started</a> ·
-  <a href="#firmware-and-branches">Firmware</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#demonstrations">Demonstrations</a> ·
   <a href="#architecture">Architecture</a> ·
-  <a href="#integration-and-testing">Testing</a> ·
+  <a href="#integration-and-testing">Test results</a> ·
+  <a href="docs/technical-guide.md">Technical guide</a> ·
+  <a href="#branches">Branches</a> ·
   <a href="#team-and-contributions">Team</a>
 </p>
 
 <p align="center">
   <a href="#development-environment"><img src="docs/assets/badge-ide.svg" alt="Reference Arduino IDE: 2.3.10" height="26"></a>
   <a href="#development-environment"><img src="docs/assets/badge-core.svg" alt="Reference ESP32 core: 3.3.11" height="26"></a>
-  <a href="#getting-started"><img src="docs/assets/badge-serial.svg" alt="Serial: 115200 baud" height="26"></a>
+  <a href="#quick-start"><img src="docs/assets/badge-serial.svg" alt="Serial: 115200 baud" height="26"></a>
 </p>
 
 <p align="center">
-  <a href="#firmware-and-branches"><img src="docs/assets/badge-cpp.svg" alt="C++ / Arduino" height="26"></a>
-  <a href="#hardware"><img src="docs/assets/badge-esp32.svg" alt="Reference hardware: ESP32 + ESP32-S3" height="26"></a>
-  <a href="#architecture"><img src="docs/assets/badge-ble.svg" alt="Bluetooth BLE / GATT" height="26"></a>
+  <a href="#firmware"><img src="docs/assets/badge-cpp.svg" alt="C++ and Arduino" height="26"></a>
+  <a href="#hardware"><img src="docs/assets/badge-esp32.svg" alt="ESP32 and ESP32-S3" height="26"></a>
+  <a href="#architecture"><img src="docs/assets/badge-ble.svg" alt="Bluetooth BLE and GATT" height="26"></a>
   <a href="#architecture"><img src="docs/assets/badge-freertos.svg" alt="FreeRTOS Master design" height="26"></a>
 </p>
 
 # ESP32 Master-Slave BLE Communication
 
-A collaborative implementation for **BCA188, Laboratory Activity 7** at **Mindanao State University–Iligan Institute of Technology (MSU-IIT)**.
+One ESP32 Master controls the LEDs on two BLE peripherals. Hold the Master’s button to request `ON`; release it to request `OFF`. The Master firmware includes separate FreeRTOS command workers and a background reconnection worker.
 
-The group is integrating one ESP32 Master and two BLE peripherals. The intended behavior is simple: hold the Master's pushbutton to switch both Slave LEDs on, then release it to switch them off. The Master contribution uses separate FreeRTOS command workers and a background reconnection worker.
-
-Yestin develops the Master, Kenneth develops the Blue Slave, and Regine develops the Red Slave. Each member works on a separate branch before review and integration into `main`.
+This is the group project for **BCA188, Laboratory Activity 7** at **Mindanao State University–Iligan Institute of Technology (MSU-IIT)**. Yestin develops the Master, Kenneth develops the Blue Slave, and Regine develops the Red Slave.
 
 <table>
   <tr>
     <td width="33%" align="center" valign="top">
-      <a href="#firmware-and-branches"><img src="docs/assets/icons/code.svg" width="30" height="30" alt=""><br><strong>Member branches</strong></a><br>
-      <sub>Master, Blue Slave, and Red Slave development</sub>
+      <a href="#firmware"><img src="docs/assets/icons/code.svg" width="30" height="30" alt=""><br><strong>Firmware</strong></a><br>
+      <sub>Single-file and modular Master, plus two Slaves</sub>
     </td>
     <td width="33%" align="center" valign="top">
-      <a href="#integration-and-testing"><img src="docs/assets/icons/check.svg" width="30" height="30" alt=""><br><strong>Integration checks</strong></a><br>
-      <sub>Device names, GPIO pins, and three-board tests</sub>
+      <a href="#demonstrations"><img src="docs/assets/icons/video.svg" width="30" height="30" alt=""><br><strong>Watch the system</strong></a><br>
+      <sub>Serial Monitor and physical hardware recordings</sub>
     </td>
     <td width="33%" align="center" valign="top">
-      <a href="#demonstrations-and-evidence"><img src="docs/assets/icons/video.svg" width="30" height="30" alt=""><br><strong>Demonstrations</strong></a><br>
-      <sub>Group evidence and the separate individual reference</sub>
+      <a href="#hardware"><img src="docs/assets/icons/cpu.svg" width="30" height="30" alt=""><br><strong>Build the circuit</strong></a><br>
+      <sub>Board setup, GPIO assignments, and wiring checks</sub>
     </td>
   </tr>
 </table>
 
 > [!IMPORTANT]
-> Group integration and hardware testing are pending. Yestin's separately tested individual build is a reference implementation; its results do not validate the group's firmware or hardware.
+> The current `main` branch contains both Master versions, the Blue and Red Slave source folders, and the group demonstration recordings. Source review found that the Master’s discovery names do not match the names currently advertised by either Slave; see [hardware and wiring](#hardware) before assembling the boards.
 
-<a id="firmware-and-branches"></a>
+<a id="demonstrations"></a>
 
-## <img src="docs/assets/icons/code.svg" width="23" height="23" alt=""> Firmware and branches
+## <img src="docs/assets/icons/video.svg" width="23" height="23" alt=""> Demonstrations
 
-| Component | Developer | Branch | Source organization |
-| :--- | :--- | :--- | :--- |
-| Original Master | Yestin Paraguya | [Paraguaya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguaya) | [`master/master.ino`](master/master.ino), single-file FreeRTOS sketch; tested on Yestin's individual hardware |
-| Modular Master | Yestin Paraguya | [Paraguaya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguaya) | [`master_modular/master_modular.ino`](master_modular/master_modular.ino) with 10 companion files; separates BLE, button, shared state, configuration, and FreeRTOS tasks. Group build and hardware testing are pending. |
-| Blue Slave | Kenneth O. Restauro | [Restauro](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Restauro) | `Slave_Blue.ino`, setup module, and BLE callback module |
-| Red Slave | Regine Bermudo | [Bermudo](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Bermudo) | `Slave_Red.ino` and setup/callback definitions |
-| Integrated project | Group | [main](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/main) | Reviewed changes merged from member branches |
-
-The original Master is on `main`. The modular Master is provided as a second implementation with its files organized by responsibility. The Slave implementations remain on their member branches while `main` contains starter sketches; review and integrate them before treating the project as complete.
-
-<a id="architecture"></a>
-
-## <img src="docs/assets/icons/network.svg" width="23" height="23" alt=""> Architecture
-
-```mermaid
-flowchart TD
-    Button["Pushbutton on Master"] --> Master["ESP32 Master<br/>BLE Central / GATT Client<br/>Yestin"]
-    Master -->|"ON / OFF · BLE link"| Blue["Blue Slave · BLE Peripheral<br/>Kenneth"]
-    Master -->|"ON / OFF · BLE link"| Red["Red Slave · BLE Peripheral<br/>Regine"]
-    Blue --> BlueLED["External LED"]
-    Red --> RedLED["External LED"]
-    style Master fill:#172b4d,stroke:#2196ff,color:#ffffff
-    style Blue fill:#172b4d,stroke:#00c8ff,color:#ffffff
-    style Red fill:#401d2b,stroke:#ff4081,color:#ffffff
-```
-
-Both Slave implementations use the shared service and writable characteristic below:
-
-```text
-Service         ec8817e4-164d-4c5e-8f2f-9b238a1b4e23
-Characteristic  e70df770-9853-4704-bd6d-d18b3f8dfdb3
-Commands        ON / OFF
-```
-
-The Master design debounces its button, remembers the requested LED state, and updates a one-item queue per Slave. Separate workers deliver commands; background recovery should reconnect a missing Slave and restore its latest state. The group must verify this behavior using the integrated firmware.
-
-<a id="hardware"></a>
-
-## <img src="docs/assets/icons/cpu.svg" width="23" height="23" alt=""> Hardware and configuration
-
-The intended setup uses one Master board, two BLE-capable ESP32 Slave boards, a pushbutton, two LEDs with current-limiting resistors, jumper wires, breadboards, and USB data cables. Confirm the exact board variants and pin labels on the group's hardware before choosing Arduino targets.
-
-| Component | Source-review configuration | Integration action |
-| :--- | :--- | :--- |
-| Master reference | Button on GPIO 23; expects `LAB7_SLAVE_1` and `LAB7_SLAVE_2` | Adapt discovery names and address fallbacks to the group's actual peripherals. |
-| Blue Slave | Advertises `ESP32 Slave (Blue)`; LED macro uses GPIO 23 | Confirm the LED wiring and align discovery with the Master. |
-| Red Slave | LED macro uses GPIO 18; command and connection callbacks are defined | Complete BLE initialization, service creation, callback registration, and advertising. |
-
-The Blue Slave's reviewed source has an LED-pin comment that differs from its GPIO 23 macro. Use the configured macro and physical wiring when resolving that discrepancy. Device addresses recorded for Yestin's boards must be replaced if the Master uses address fallbacks on the group's boards.
-
-Disconnect power before rewiring. Each external LED needs a current-limiting resistor and correct polarity. Wire the Master button between its configured input and GND when using `INPUT_PULLUP`.
-
-<a id="getting-started"></a>
-
-## <img src="docs/assets/icons/terminal.svg" width="23" height="23" alt=""> Getting started
-
-```sh
-git clone https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32.git
-cd Master-Slave-BLE-Communication-ESP32
-git switch Paraguaya
-```
-
-1. Open the relevant member branch to inspect its firmware. Until changes are merged, one branch does not contain all members' latest implementations.
-2. Choose one Master version: [`master/master.ino`](master/master.ino) or the [modular sketch](master_modular/master_modular.ino). The modular folder contains all eleven required files; keep them together and keep the folder name matched to `master_modular.ino`.
-3. Integrate the selected Master with both Slave implementations. Reconcile the discovery names, device-address fallbacks, GPIO assignments, and shared UUIDs.
-4. Select the Arduino target and USB port for each physical board. Keep every sketch's `.ino`, `.h`, and `.cpp` files together; the sketch folder must match its main `.ino` filename.
-5. Compile and upload both Slaves first. Confirm their advertising logs at **115200 baud**.
-6. Compile and upload the selected Master, then power all three boards and run the integration tests below.
-
-<a id="development-environment"></a>
-
-### Development environment
-
-Yestin's individual reference used **Arduino IDE 2.3.10** and **esp32 by Espressif Systems 3.3.11**, including the built-in BLE and FreeRTOS libraries. The environment badges above refer to that baseline. Confirm successful builds of each group sketch with the chosen board package and board targets before recording the group's tested environment.
-
-<a id="integration-and-testing"></a>
-
-## <img src="docs/assets/icons/check.svg" width="23" height="23" alt=""> Integration and testing
-
-| Check | Group status |
-| :--- | :--- |
-| Compile the original and modular Master versions with the group Slaves | Not yet confirmed |
-| Complete Red Slave BLE initialization | Pending |
-| Reconcile Blue Slave name and LED pin | Pending |
-| Confirm matching UUIDs and discovery settings | Pending integration check |
-| Compile all three firmware targets | Not yet confirmed |
-| Connect both Slaves and control both LEDs | Not yet confirmed |
-| Disconnect each Slave while controlling the other | Not yet confirmed |
-| Restore power and verify automatic recovery | Not yet confirmed |
-| Reconnect a Slave while holding the button | Not yet confirmed |
-| Review and merge member contributions into `main` | Pending |
-
-Record the actual firmware revision, board targets, and observed outcomes when testing. BLE scan duration, connection timeouts, and the shared radio can affect response and recovery time.
-
-<a id="demonstrations-and-evidence"></a>
-
-## <img src="docs/assets/icons/video.svg" width="23" height="23" alt=""> Demonstrations and evidence
-
-### Group project demonstrations
-
-The recordings show the three-board ESP32 setup, Serial Monitor activity, pushbutton input, and LED outputs. Integration testing of the group's branch firmware is tracked separately in [Integration and testing](#integration-and-testing).
+### Group project recordings
 
 <details open>
-<summary><strong>01 / Serial Monitor demonstration</strong> · Master and both Slaves</summary>
+<summary><strong>01 / Serial Monitor</strong> · Master and both Slaves</summary>
 
-Discovery, connections, and ON/OFF command logs displayed together.
+Discovery, connections, and ON/OFF command logs appear together.
 
 https://github.com/user-attachments/assets/093fc8ef-db45-4300-9b11-532496c234f9
 
+[Download the MP4](demo/01-serial-monitor-demonstration.mp4?raw=true)
+
 </details>
 
-<details open>
-<summary><strong>02 / Physical hardware demonstration</strong> · Portrait video</summary>
+<details>
+<summary><strong>02 / Physical hardware</strong> · Portrait video</summary>
 
-The physical three-board setup, pushbutton, and LED outputs.
+The recording shows the three-board setup, pushbutton, and LED outputs.
 
 <table align="center" width="320">
   <tr>
@@ -190,28 +92,150 @@ The physical three-board setup, pushbutton, and LED outputs.
   </tr>
 </table>
 
+[Download the MP4](demo/02-actual-hardware-demonstration.mp4?raw=true)
+
 </details>
+
+<a id="quick-start"></a>
+
+## <img src="docs/assets/icons/terminal.svg" width="23" height="23" alt=""> Quick start
+
+The individual reference used **Arduino IDE 2.3.10** with **esp32 by Espressif Systems 3.3.11**. BLE and FreeRTOS are included in that board package. Use **115200 baud** for the Serial Monitor.
+
+```sh
+git clone https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32.git
+cd Master-Slave-BLE-Communication-ESP32
+```
+
+1. Choose one Master: the [single-file sketch](master/master.ino) or the [modular sketch](master_modular/master_modular.ino). Keep every `.h` and `.cpp` file beside the modular `.ino` in the `master_modular` folder.
+2. Choose one Master and open the Blue and Red Slave sketches from the folders in `main`. The [branch directory](#branches) links to each contributor branch and notes how its files differ from `main`.
+3. Match the two Master discovery names to the Slave advertising names before uploading. Select the correct board targets and COM ports, then upload both Slaves before the Master.
+4. Open the Serial Monitors at 115200 baud and verify discovery, connection, and LED commands.
+
+Compile the selected Master and Slave sketches before uploading. The current Master sketches search for `LAB7_SLAVE_1` and `LAB7_SLAVE_2`; the Slave sketches advertise different names, as listed in [hardware and wiring](#hardware).
+
+<a id="architecture"></a>
+
+## <img src="docs/assets/icons/network.svg" width="23" height="23" alt=""> How it works
+
+```mermaid
+flowchart TD
+    Button["Pushbutton on Master"] --> Master["ESP32 Master<br/>BLE Central / GATT Client<br/>Yestin"]
+    Master -->|"ON / OFF · BLE link"| Blue["Blue Slave · BLE Peripheral<br/>Kenneth"]
+    Master -->|"ON / OFF · BLE link"| Red["Red Slave · BLE Peripheral<br/>Regine"]
+    Blue --> BlueLED["Blue LED"]
+    Red --> RedLED["Red LED"]
+    style Master fill:#172b4d,stroke:#2196ff,color:#ffffff
+    style Blue fill:#172b4d,stroke:#00c8ff,color:#ffffff
+    style Red fill:#401d2b,stroke:#ff4081,color:#ffffff
+```
+
+Both Slaves use the same GATT service and writable characteristic:
+
+```text
+Service         ec8817e4-164d-4c5e-8f2f-9b238a1b4e23
+Characteristic  e70df770-9853-4704-bd6d-d18b3f8dfdb3
+Commands        ON / OFF
+```
+
+The Master debounces the button, stores the requested LED state, and queues commands for each Slave. A background worker attempts to reconnect a missing Slave and send it the latest state. Both Slave folders in `main` contain setup and BLE callback modules.
+
+<a id="firmware"></a>
+
+## <img src="docs/assets/icons/code.svg" width="23" height="23" alt=""> Firmware
+
+Use one Master implementation with both Slave sketches.
+
+| Firmware | Source | Organization and status |
+| :--- | :--- | :--- |
+| Original Master | [`master/master.ino`](master/master.ino) | Present on `main`; byte-identical to the individually tested Master source. |
+| Modular Master | [`master_modular/master_modular.ino`](master_modular/master_modular.ino) | Present on `main`; organized into BLE, button, shared-state, configuration, and FreeRTOS modules. |
+| Blue Slave | [`Slave_Blue/Slave_Blue.ino`](Slave_Blue/Slave_Blue.ino) | Present on `main` with setup and BLE callback modules; original contribution is on `Restauro`. |
+| Red Slave | [`Slave_Red/Slave_Red.ino`](Slave_Red/Slave_Red.ino) | Present on `main` with setup and callback modules; original contribution is on `Bermudo`. |
+
+<details>
+<summary><strong>Modular Master file map</strong></summary>
+
+| File | Responsibility |
+| :--- | :--- |
+| [`Config.h`](master_modular/Config.h) | BLE names, UUIDs, pins, and timing |
+| [`ButtonHandler.cpp`](master_modular/ButtonHandler.cpp) | Button input, debounce, and command queuing |
+| [`BLEManager.cpp`](master_modular/BLEManager.cpp) | Discovery, connections, and recovery |
+| [`RTOSTasks.cpp`](master_modular/RTOSTasks.cpp) | Command workers and reconnection worker |
+| [`SharedState.cpp`](master_modular/SharedState.cpp) | Shared BLE objects, queues, mutexes, and LED state |
+
+All files in `master_modular/` belong to one Arduino sketch and compile into one firmware image. Open `master_modular.ino` from the matching folder.
+
+</details>
+
+<a id="hardware"></a>
+
+## <img src="docs/assets/icons/cpu.svg" width="23" height="23" alt=""> Hardware and wiring
+
+The group setup uses one Master board, two BLE-capable ESP32 Slaves, a pushbutton, two LEDs with current-limiting resistors, breadboards, jumper wires, and USB data cables. Confirm board variants, pin labels, and resistor values against the physical build.
+
+| Component | Source configuration | Check before testing |
+| :--- | :--- | :--- |
+| Master | Button on GPIO 23; looks for `LAB7_SLAVE_1` and `LAB7_SLAVE_2` | Change the Master names or Slave advertising names so the values match. |
+| Blue Slave on `main` | Advertises `ESP32 SLAVE Blue`; LED macro uses GPIO 23 | Confirm the physical wiring uses GPIO 23 and align the advertising name with the Master. |
+| Red Slave on `main` | Advertises `ESP32 SLAVE Red`; LED macro uses GPIO 18 | Confirm the physical wiring uses GPIO 18 and align the advertising name with the Master. |
+
+The Master currently searches for `LAB7_SLAVE_1` and `LAB7_SLAVE_2`, which do not match either Slave name above. The `Restauro` branch uses a third Blue name, `ESP32 Slave (Blue)`, and the `Bermudo` branch has a typo in its Red name, `ESPS32 SLAVE Red`. Use the `main` versions as the README's source of truth, then make the Master and Slaves advertise matching names. Confirm the actual GPIO wiring before choosing pins. Disconnect power before rewiring; with `INPUT_PULLUP`, connect the button between the configured input and GND.
+
+<a id="integration-and-testing"></a>
+
+## <img src="docs/assets/icons/check.svg" width="23" height="23" alt=""> Test results and integration status
+
+The original `master/master.ino` in this repository is byte-for-byte identical to the Master tested in Yestin’s individual project. Those results cover discovery, LED control, disconnect handling, and recovery with both Slaves.
+
+| Scenario | Individual result | Evidence |
+| :--- | :--- | :--- |
+| Discover and connect to both Slaves | Passed | [Connection log](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-01-ble-discovery-connections.png) |
+| Control both LEDs with the button | Passed | [ON/OFF communication](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-02-normal-ble-communication.png) |
+| Disconnect Slave 1 while controlling Slave 2 | Passed | [Slave 1 disconnected](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-03-slave1-disconnection.png) |
+| Disconnect Slave 2 while controlling Slave 1 | Passed | [Slave 2 disconnected](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-04-slave2-disconnection.png) |
+| Restore each Slave and resume control | Passed | [Automatic recovery](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-05-automatic-reconnection.png) |
+| Reconnect while holding the button | Evidence captured; video/log confirmation pending | [State synchronization](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm/blob/main/evidence/evidence-07-led-state-synchronization.png) |
+
+The group demonstration videos above show the three-board setup. The test table links to results from Yestin’s individually tested Master setup.
+
+<a id="branches"></a>
+
+## Repository branches
+
+Use these links to open each project branch directly:
+
+| Branch | Project files |
+| :--- | :--- |
+| [`main`](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/main) | Current consolidated files: both Masters, complete Blue and Red Slave folders, README assets, and demonstration videos. |
+| [`Paraguya`](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguya) | Yestin’s Master, modular Master, README assets, and demonstrations; the Slave folders on this branch contain only starter `.ino` files. |
+| [`Restauro`](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Restauro) | Blue Slave contribution by Kenneth. |
+| [`Bermudo`](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Bermudo) | Red Slave contribution by Regine. |
+
+The current `main` tree already contains the Master, modular Master, both complete Slave folders, repository graphics, and both demonstration videos. The older `Paraguya` branch has only the Slave starter sketches; use `main` for the consolidated source.
 
 <a id="team-and-contributions"></a>
 
 ## <img src="docs/assets/icons/users.svg" width="23" height="23" alt=""> Team and contributions
 
-| Member | Group responsibility | Development branch |
+| Member | Responsibility | Profile |
 | :--- | :--- | :--- |
-| [Yestin Paraguya](https://github.com/xavieryyyyyy) | Master firmware and Master-side integration | [Paraguaya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguaya) |
-| [Kenneth O. Restauro](https://github.com/kinitgwapo) | Blue Slave firmware and BLE callbacks | [Restauro](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Restauro) |
-| [Regine Bermudo](https://github.com/REGINE-BERMUDO) | Red Slave firmware and BLE callbacks | [Bermudo](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Bermudo) |
+| Yestin Paraguya | Master firmware, integration work, README, and demonstration recordings | [@xavieryyyyyy](https://github.com/xavieryyyyyy) |
+| Kenneth O. Restauro | Blue Slave firmware | [@kinitgwapo](https://github.com/kinitgwapo) |
+| Regine Bermudo | Red Slave firmware | [@REGINE-BERMUDO](https://github.com/REGINE-BERMUDO) |
 
-Each member develops on their own hardware. The group's integrated test results should be documented separately from Yestin's individual submission. Group/section and instructor details are awaiting confirmation.
+## Supporting files
+
+The group technical guide is in [`docs/technical-guide.md`](docs/technical-guide.md). The remaining physical documentation to add is a wiring diagram or photos of the group's actual boards. Circuit photos and test screenshots in Yestin’s individual repository document his separate reference setup.
 
 <a id="references"></a>
 
 ## <img src="docs/assets/icons/book.svg" width="23" height="23" alt=""> References
 
 - [Arduino-ESP32 documentation](https://docs.espressif.com/projects/arduino-esp32/en/latest/)
-- [Espressif's built-in BLE library](https://github.com/espressif/arduino-esp32/tree/master/libraries/BLE)
+- [Espressif BLE library](https://github.com/espressif/arduino-esp32/tree/master/libraries/BLE)
 - [FreeRTOS documentation](https://www.freertos.org/Documentation/RTOS_book.html)
-- [Individual implementation and technical guide](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm)
+- [Yestin’s individual project and technical guide](https://github.com/xavieryyyyyy/esp32_master-slave-ble_comm)
 - BCA188 laboratory materials and classroom instructions.
 
 <p align="center">
