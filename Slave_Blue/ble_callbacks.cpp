@@ -17,7 +17,7 @@ void BLE_LEDWrite_Callback::onWrite(BLECharacteristic *pCharacteristic) {
   // Gather Master LED Command
   String ledcommand = pCharacteristic->getValue();
 
-  Serial.println("Received LED Command:" + ledcommand);
+  Serial.println("Received LED Command: " + ledcommand);
 
   // Set LED Pin to HIGH if command is ON
   if(ledcommand == "ON") {
