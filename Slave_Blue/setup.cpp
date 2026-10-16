@@ -13,7 +13,7 @@ void ledpinSetup(void) {
 
 String bleSetup(void) {
   // Initialize BLE with advertising name
-  BLEDevice::init("ESP32 Slave (Blue)");
+  BLEDevice::init("ESP32 SLAVE Blue");
 
   // Create BLE Server for this device
   BLEServer *ptrServer = BLEDevice::createServer();
