@@ -2,7 +2,7 @@
 #define SETUP_H
 
 // Pin Macro
-#define CLED_PIN 20
+#define CREDLED_PIN 20
 
 // LED Service & Characteristics UUID
 #define SERVICE_LED_UUID "ec8817e4-164d-4c5e-8f2f-9b238a1b4e23"

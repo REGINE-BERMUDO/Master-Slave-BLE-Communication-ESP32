@@ -5,7 +5,7 @@
 
 
 // Connection Handler
-class BLE_Server_Callback : public BLEServerCallbacks {
+class BLE_ServerConnection_Callback : public BLEServerCallbacks {
 public:
   // Master connects
   void onConnect(BLEServer *pServer)
@@ -25,18 +25,42 @@ public:
   }
 };
 
-BLE_Server_Callback ble_srv_cb;
+class BLE_LEDWrite_Callback : public BLECharacteristicCallbacks {
+public:
+  // When Master sends LED Command
+  void onWrite(BLECharacteristic *pCharacteristic)
+  override {
+    // Gather Master LED Command
+    stding::string ledcommand = pCharacteristic->getValue();
 
+    Serial.println("Received LED Command:" + String(command.c_str()));
+
+    // Set LED Pin to HIGH if command is ON
+    if(ledcommand == "ON") {
+      digitalWrite(CREDLED_PIN, LOW);
+      Serial.println("RED LED PIN ON");
+    }
+
+    // Set LED Pin to LOW if command is OFF
+    if(ledcommand == "OFF") {
+      digitalWrite(CREDLED_PIN, LOW);
+      Serial.println("RED LED PIN OFF");
+    }
+  }
+};
+
+BLE_ServerConnection_Callback ble_srvconn_cb;
+BLE_LEDWrite_Callback ble_ledwrite_cb;
 
 
 
 
 void ledpinSetup(void) {
   // Configure LED pin 20
-  pinMode(CLED_PIN, OUTPUT);
+  pinMode(CREDLED_PIN, OUTPUT);
 
   // Set Initial LED pin state to low
-  digitalWrite(CLED_PIN, LOW);
+  digitalWrite(CREDLED_PIN, LOW);
 }
 
 
@@ -54,8 +78,11 @@ String bleSetup(void) {
   BLEService *ptrService_LED = ptrServer->createService(SERVICE_LED_UUID);
   BLECharacteristic *ptrCharacteristic_ledwrite = ptrService_LED->createCharacteristic(CHARACTERISTIC_LEDWRITE_UUID, BLECharacteristic::PROPERTY_WRITE);
 
-  // Set Server Callback functions
-  ptrServer->setCallbacks(&ble_srv_cb);
+  // Set Server Callback function
+  ptrServer->setCallbacks(&ble_srvconn_cb);
+
+  // Set LED Write Characteristic Callback function
+  ptrCharacteristic_ledwrite->setCallbacks(&ble_ledwrite_cb);
 
   // Start BLE LED Service
   ptrService_LED->start();
