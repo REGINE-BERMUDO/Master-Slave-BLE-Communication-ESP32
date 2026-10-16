@@ -13,7 +13,10 @@
 // LED connected to GPIO 18
 #define LED_PIN 18
 
-// Sets up the LED and BLE
-void setupSlave();
+// Handle commands received from the Master
+class CommandCallbacks : public BLECharacteristicCallbacks {
+public:
+  void onWrite(BLECharacteristic *characteristic) override;
+};
 
 #endif
