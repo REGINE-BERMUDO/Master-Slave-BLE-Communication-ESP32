@@ -25,6 +25,7 @@ public:
   }
 };
 
+// LED Write Command Handler
 class BLE_LEDWrite_Callback : public BLECharacteristicCallbacks {
 public:
   // When Master sends LED Command
