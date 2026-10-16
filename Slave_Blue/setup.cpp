@@ -1,16 +1,20 @@
 #include "setup.h"
 
+
+
+
+
 // Connection Handler
 class BLE_Server_Callback : public BLEServerCallbacks {
 public:
   // Master connects
-  void onConnect(BLEServer *pServer, BLEConnInfo& connInfo)
+  void onConnect(BLEServer *pServer)
   override {
     Serial.println("ESP32 Slave (Blue) successfully connected to ESP32 Master!");
   }
 
   // When Master or Slave disconnects
-  void onDisconnect(BLEServer *pServer, BLEConnInfo& connInfo)
+  void onDisconnect(BLEServer *pServer)
   override {
     Serial.println("ESP32 Slave (Blue) disconnected!");
 
@@ -23,6 +27,10 @@ public:
 
 BLE_Server_Callback ble_srv_cb;
 
+
+
+
+
 void ledpinSetup(void) {
   // Configure LED pin 20
   pinMode(CLED_PIN, OUTPUT);
@@ -30,6 +38,10 @@ void ledpinSetup(void) {
   // Set Initial LED pin state to low
   digitalWrite(CLED_PIN, LOW);
 }
+
+
+
+
 
 String bleSetup(void) {
   // Initialize BLE with advertising name
@@ -43,7 +55,7 @@ String bleSetup(void) {
   BLECharacteristic *ptrCharacteristic_ledwrite = ptrService_LED->createCharacteristic(CHARACTERISTIC_LEDWRITE_UUID, BLECharacteristic::PROPERTY_WRITE);
 
   // Set Server Callback functions
-  ptrServer->setCallbacks();
+  ptrServer->setCallbacks(&ble_srv_cb);
 
   // Start BLE LED Service
   ptrService_LED->start();
