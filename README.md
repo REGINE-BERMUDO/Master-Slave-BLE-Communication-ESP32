@@ -68,12 +68,13 @@ Yestin develops the Master, Kenneth develops the Blue Slave, and Regine develops
 
 | Component | Developer | Branch | Source organization |
 | :--- | :--- | :--- | :--- |
-| Master | Yestin Paraguya | [Paraguya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguya) | Master contribution to be integrated |
+| Original Master | Yestin Paraguya | [Paraguaya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguaya) | [`master/master.ino`](master/master.ino), single-file FreeRTOS sketch; tested on Yestin's individual hardware |
+| Modular Master | Yestin Paraguya | [Paraguaya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguaya) | [`master_modular/master_modular.ino`](master_modular/master_modular.ino) with 10 companion files; separates BLE, button, shared state, configuration, and FreeRTOS tasks. Group build and hardware testing are pending. |
 | Blue Slave | Kenneth O. Restauro | [Restauro](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Restauro) | `Slave_Blue.ino`, setup module, and BLE callback module |
 | Red Slave | Regine Bermudo | [Bermudo](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Bermudo) | `Slave_Red.ino` and setup/callback definitions |
 | Integrated project | Group | [main](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/main) | Reviewed changes merged from member branches |
 
-Source review found Slave implementations on the member branches while `main` still contained starter sketches. Use the relevant branch to inspect each member's work until integration is complete.
+The original Master is on `main`. The modular Master is provided as a second implementation with its files organized by responsibility. The Slave implementations remain on their member branches while `main` contains starter sketches; review and integrate them before treating the project as complete.
 
 <a id="architecture"></a>
 
@@ -124,14 +125,15 @@ Disconnect power before rewiring. Each external LED needs a current-limiting res
 ```sh
 git clone https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32.git
 cd Master-Slave-BLE-Communication-ESP32
-git switch Paraguya
+git switch Paraguaya
 ```
 
 1. Open the relevant member branch to inspect its firmware. Until changes are merged, one branch does not contain all members' latest implementations.
-2. Integrate the Master contribution and both Slave implementations in a local checkout. Reconcile the discovery names, device-address fallbacks, GPIO assignments, and shared UUIDs.
-3. Select the Arduino target and USB port for each physical board. Keep every sketch's `.ino`, `.h`, and `.cpp` files together; the sketch folder must match its main `.ino` filename.
-4. Compile and upload both Slaves first. Confirm their advertising logs at **115200 baud**.
-5. Compile and upload the Master, then power all three boards and run the integration tests below.
+2. Choose one Master version: [`master/master.ino`](master/master.ino) or the [modular sketch](master_modular/master_modular.ino). The modular folder contains all eleven required files; keep them together and keep the folder name matched to `master_modular.ino`.
+3. Integrate the selected Master with both Slave implementations. Reconcile the discovery names, device-address fallbacks, GPIO assignments, and shared UUIDs.
+4. Select the Arduino target and USB port for each physical board. Keep every sketch's `.ino`, `.h`, and `.cpp` files together; the sketch folder must match its main `.ino` filename.
+5. Compile and upload both Slaves first. Confirm their advertising logs at **115200 baud**.
+6. Compile and upload the selected Master, then power all three boards and run the integration tests below.
 
 <a id="development-environment"></a>
 
@@ -145,7 +147,7 @@ Yestin's individual reference used **Arduino IDE 2.3.10** and **esp32 by Espress
 
 | Check | Group status |
 | :--- | :--- |
-| Add the Master contribution to `Paraguya` | Pending |
+| Compile the original and modular Master versions with the group Slaves | Not yet confirmed |
 | Complete Red Slave BLE initialization | Pending |
 | Reconcile Blue Slave name and LED pin | Pending |
 | Confirm matching UUIDs and discovery settings | Pending integration check |
@@ -196,7 +198,7 @@ The physical three-board setup, pushbutton, and LED outputs.
 
 | Member | Group responsibility | Development branch |
 | :--- | :--- | :--- |
-| [Yestin Paraguya](https://github.com/xavieryyyyyy) | Master firmware and Master-side integration | [Paraguya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguya) |
+| [Yestin Paraguya](https://github.com/xavieryyyyyy) | Master firmware and Master-side integration | [Paraguaya](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Paraguaya) |
 | [Kenneth O. Restauro](https://github.com/kinitgwapo) | Blue Slave firmware and BLE callbacks | [Restauro](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Restauro) |
 | [Regine Bermudo](https://github.com/REGINE-BERMUDO) | Red Slave firmware and BLE callbacks | [Bermudo](https://github.com/REGINE-BERMUDO/Master-Slave-BLE-Communication-ESP32/tree/Bermudo) |
 
